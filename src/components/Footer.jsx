@@ -6,7 +6,7 @@ const footerLinks = {
   mail: "mailto:bentamihai94@gmail.com", // Replace with your email
   linkedin: "https://www.linkedin.com/in/mihai-ben%C8%9Ba-69024920b/", // Replace with your LinkedIn profile URL
   github: "https://github.com/mihaibenta", // Replace with your GitHub URL
-  cv: "/path/to/your-cv.pdf", // Replace with the actual path to your CV
+  cv: "/CV_MihaiBenta_2025_ENG.pdf", // Replace with the actual path to your CV
 };
 
 const Footer = () => {

@@ -1,0 +1,237 @@
+/* Container */
+.showcase-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    font-family: 'Poppins', sans-serif;
+    max-width: 1200px;
+    margin: 10px auto; /* Center container */
+    padding: 0 16px; /* Add padding for mobile */
+}
+
+@media (max-width: 680px) {
+    .showcase-container {
+        gap: 24px;
+    }
+}
+
+/* Individual showcase item */
+.showcase-item {
+    display: flex;
+    align-items: center;
+    gap: 32px; /* Increased gap for better spacing */
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    padding: 24px; /* Adjusted padding for better spacing */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border-left: 5px solid #00e1b4; /* Purple accent border */
+}
+
+@media (max-width: 800px) {
+    .showcase-item {
+        flex-direction: column; /* Stack content vertically */
+        align-items: flex-start;
+        gap: 20px; /* Adjusted gap for vertical layout */
+        padding: 20px; /* Increased padding for smaller screens */
+    }
+}
+
+/* Hover effect */
+.showcase-item:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    background-color: #f0e6f6; /* Soft lavender hover effect */
+}
+
+/* Left: Image */
+.showcase-image {
+   
+}
+
+.showcase-image img {
+    width: 100%; /* Full width within the image container */
+    max-width: 800px; /* Increased max-width for larger images */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    border-radius: 16px; /* Increased border-radius for smoother corners */
+    border: 3px solid #ddd;
+}
+
+@media (max-width: 680px) {
+    .showcase-image img {
+        max-width: none; /* Allow the image to stretch full width */
+    }
+}
+
+/* Right: Details */
+.showcase-details {
+    flex: 3; /* Adjust the proportion of space for details */
+}
+
+/* App name */
+.app-name {
+    margin: 0 0 8px;
+    color: #2c3e50;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 1.5rem; /* Slightly increased font size */
+}
+
+@media (max-width: 680px) {
+    .app-name {
+        font-size: 1.2rem;
+    }
+}
+
+/* Technologies section */
+.technologies {
+    margin: 12px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Technology tags */
+.tech-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6a00, #f44336); /* Orange to red gradient */
+    color: white;
+    font-size: 0.9rem; /* Slightly increased font size */
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.tech-tag:nth-child(odd) {
+    background: linear-gradient(135deg, #00ff81, #00c9df); /* Green to blue gradient for alternating tags */
+}
+
+.tech-tag:hover {
+    background: linear-gradient(135deg, #f44336, #ff6a00); /* Reversed gradient for hover */
+    transform: translateY(-4px);
+}
+
+/* Github link */
+.github-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #1abc9c; /* Turquoise accent for links */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.github-link:hover {
+    color: #16a085; /* Darker turquoise for hover */
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+.app-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #5d1abc; /* Turquoise accent for links */
+    text-decoration: none;
+    font-weight: 600;
+    margin-left:10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.app-link:hover {
+    color: #5d16a0; /* Darker turquoise for hover */
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+@media (max-width: 680px) {
+    .github-link {
+        font-size: 0.95rem;
+    }
+}
+
+/* Spinner container */
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Match your image container's height */
+    width: 100%;
+  }
+  
+  /* Spinner animation */
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.2); /* Light border */
+    border-top: 4px solid #000; /* Darker border */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Spin animation */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+  .showcase-media {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex:4;
+    box-shadow: 0 4px 7px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 10px; /* Optional: Add rounded corners for better visuals */
+  }
+  
+  .showcase-media video {
+    width: 100%; /* Set a consistent width for all videos */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the video fills the container visually */
+    display: block; /* Matches the JavaScript logic for display toggling */
+ 
+    
+  }
+  
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Ensures spinner is above the video while loading */
+  }
+  
+  .loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1); /* Light border for the spinner */
+    border-top: 4px solid #3498db; /* Blue color for the spinner's top */
+    border-radius: 50%; /* Makes the spinner circular */
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite; /* Spinning animation */
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Styling for the description */
+.app-description {
+    font-size: 1rem;
+    color: #555;
+    margin: 0.5rem 0;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  

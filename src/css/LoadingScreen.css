@@ -1,0 +1,51 @@
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width:100vw;
+    background-color: #282c34;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .flashing-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fade-in-out 0.25s ease-in-out infinite;
+    filter: invert(30%) sepia(100%) saturate(500%) hue-rotate(120deg);
+  }
+  
+  @keyframes fade-in-out {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  .progress-bar-container {
+    width: 80%;
+    height: 10px;
+    background-color: #444;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #61dafb;
+    transition: width 0.1s ease; /* Smooth progress bar width */
+  }
+

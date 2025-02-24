@@ -44,16 +44,20 @@ const AddFoodForm = () => {
       const response = await fetch('https://booking-backend-mond.onrender.com/api/foods');
       const data = await response.json();
       setFoodsList(data);
-
+  
       const uniqueDates = [...new Set(data.map(item => item.created_at.split('T')[0]))];
+      uniqueDates.sort((a, b) => new Date(b) - new Date(a)); // Sort dates in descending order
+  
       setDates(uniqueDates);
+      
       if (uniqueDates.length > 0) {
-        setSelectedDate(uniqueDates[0]);
+        setSelectedDate(uniqueDates[0]); // Set to the latest date
       }
     } catch (err) {
       console.error('Error fetching food data:', err);
     }
   };
+  
 
   useEffect(() => {
     fetchFoods();
@@ -61,33 +65,43 @@ const AddFoodForm = () => {
 
   useEffect(() => {
     if (!selectedDate) return;
-
+  
     const filteredFoods = foodsList.filter(food => food.created_at.startsWith(selectedDate));
-
+  
     let totalProtein = 0;
     let totalFat = 0;
     let totalCarbs = 0;
     let totalAlcohol = 0;
     let totalSalt = 0;
-
+    let totalCalories = 0;
+  
     filteredFoods.forEach(foodItem => {
       const gramsConsumed = parseFloat(foodItem.grams) || 0;
-
-      totalProtein += (gramsConsumed / 100) * (parseFloat(foodItem.protein) || 0);
-      totalFat += (gramsConsumed / 100) * (parseFloat(foodItem.fat) || 0);
-      totalCarbs += (gramsConsumed / 100) * (parseFloat(foodItem.carbs) || 0);
-      totalAlcohol += (gramsConsumed / 100) * (parseFloat(foodItem.alcohol) || 0);
-      totalSalt += (gramsConsumed / 100) * (parseFloat(foodItem.salt) || 0);
+  
+      const protein = (gramsConsumed / 100) * (parseFloat(foodItem.protein) || 0);
+      const fat = (gramsConsumed / 100) * (parseFloat(foodItem.fat) || 0);
+      const carbs = (gramsConsumed / 100) * (parseFloat(foodItem.carbs) || 0);
+      const alcohol = (gramsConsumed / 100) * (parseFloat(foodItem.alcohol) || 0);
+      const salt = (gramsConsumed / 100) * (parseFloat(foodItem.salt) || 0);
+  
+      totalProtein += protein;
+      totalFat += fat;
+      totalCarbs += carbs;
+      totalAlcohol += alcohol;
+      totalSalt += salt;
+  
+      totalCalories += (protein * 4) + (fat * 9) + (carbs * 4) + (alcohol * 7);
     });
-
+  
     setTotals({
       protein: totalProtein.toFixed(2),
       fat: totalFat.toFixed(2),
       carbs: totalCarbs.toFixed(2),
       alcohol: totalAlcohol.toFixed(2),
       salt: totalSalt.toFixed(2),
+      calories: totalCalories.toFixed(2),
     });
-
+  
   }, [selectedDate, foodsList]);
 
   const handleDateChange = (e) => {
@@ -188,28 +202,30 @@ const AddFoodForm = () => {
           <option key={index} value={date}>{date}</option>
         ))}
       </select>
-
       <h2>Daily Intake for {selectedDate}</h2>
-      <table className="daily-intake-table">
-        <thead>
-          <tr>
-            <th>Carbs (g)</th>
-            <th>Protein (g)</th>
-            <th>Fat (g)</th>
-            <th>Alcohol (g)</th>
-            <th>Salt (g)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{totals.carbs}</td>
-            <td>{totals.protein}</td>
-            <td>{totals.fat}</td>
-            <td>{totals.alcohol}</td>
-            <td>{totals.salt}</td>
-          </tr>
-        </tbody>
-      </table>
+<table className="daily-intake-table">
+  <thead>
+    <tr>
+      <th>Carbs (g)</th>
+      <th>Protein (g)</th>
+      <th>Fat (g)</th>
+      <th>Alcohol (g)</th>
+      <th>Salt (g)</th>
+      <th>Calories (kcal)</th> {/* Add Calories Column */}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{totals.carbs}</td>
+      <td>{totals.protein}</td>
+      <td>{totals.fat}</td>
+      <td>{totals.alcohol}</td>
+      <td>{totals.salt}</td>
+      <td>{totals.calories}</td> {/* Display Calories */}
+    </tr>
+  </tbody>
+</table>
+
     </div>
   );
 };

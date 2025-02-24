@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 import Showcase from "./components/Showcase";
 import Footer from "./components/Footer";  // Import Footer component
+// import AnimatedLogo from "./components/AnimatedLogo"
 import './App.css';
+import AddFoodForm from "./components/AddFoodForm";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true); // State to control loading screen
@@ -22,10 +24,10 @@ const App = () => {
         <LoadingScreen />
       ) : (
         <div className="showcase-container">
-          <Showcase />
-          <Footer /> {/* Add Footer below the showcase */}
+          <AddFoodForm/>
         </div>
       )}
+      
       
     </>
   );

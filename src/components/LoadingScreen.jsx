@@ -4,7 +4,6 @@ import "../css/LoadingScreen.css";
 // Logo images (Actual icon URLs)
 const logos = [
   { name: "React", src: "https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/react.svg" },
-  
   { name: "JavaScript", src: "https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/javascript.svg" },
   { name: "Node.js", src: "https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/nodedotjs.svg" },
   { name: "Typescript", src: "https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/typescript.svg" },

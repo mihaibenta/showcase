@@ -1,0 +1,75 @@
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .food-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .food-form input,
+  .food-form select {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .food-form button {
+    padding: 10px;
+    background: blue;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+  }
+  
+  .macro-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .macro-inputs div {
+    flex: 1;
+    min-width: 100px;
+  }
+  
+  .macro-inputs input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* ✅ Table Styling */
+  .daily-intake-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgb(20, 20, 20);
+    text-align: center;
+  }
+  
+  .daily-intake-table th,
+  .daily-intake-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .daily-intake-table th {
+    background-color: #3a3a3a;
+    font-weight: bold;
+  }
+  
+  /* ✅ Responsive Table */
+  @media (max-width: 600px) {
+    .daily-intake-table th,
+    .daily-intake-table td {
+      padding: 6px;
+      font-size: 14px;
+    }
+  }
+  

@@ -36,9 +36,9 @@ const AddFoodForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFood({ ...food, [name]: value });
+    setFood(prevFood => ({ ...prevFood, [name]: value }));
   };
-
+  
   const fetchFoods = async () => {
     try {
       const response = await fetch('https://booking-backend-mond.onrender.com/api/foods');
@@ -108,6 +108,29 @@ const AddFoodForm = () => {
     setSelectedDate(e.target.value);
   };
 
+  const handleFoodSelect = (e) => {
+    const selectedFoodName = e.target.value;
+  
+    // Find the selected food object in foodsList
+    const selectedFood = foodsList.find(foodItem => foodItem.name === selectedFoodName);
+  
+    if (selectedFood) {
+      setFood({
+        ...food,
+        name: selectedFood.name,
+        category: selectedFood.category || '',
+        provider: selectedFood.provider || '',
+        grams: food.grams || '', // Keep the manually entered grams
+        carbs: selectedFood.carbs || '',
+        protein: selectedFood.protein || '',
+        fat: selectedFood.fat || '',
+        alcohol: selectedFood.alcohol || '',
+        salt: selectedFood.salt || '',
+      });
+    }
+  };
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -150,6 +173,17 @@ const AddFoodForm = () => {
 
   return (
     <div className="container">
+      <h1>Select Existing Food:</h1>
+      <select
+        value={food.name}
+        onChange={handleFoodSelect} // Handle selection
+      >
+        <option value="">-- Select a food --</option>
+        {Array.from(new Set(foodsList.map(item => item.name))).map((name, index) => (
+          <option key={index} value={name}>{name}</option>
+        ))}
+      </select>
+
       <h1>Add a New Food Item</h1>
       <form onSubmit={handleSubmit} className="food-form">
         <label>Name:</label>
